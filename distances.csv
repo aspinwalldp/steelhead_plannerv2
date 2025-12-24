@@ -1,0 +1,290 @@
+from,to,miles,hours
+Home,Home,0,0
+Home,Pyramid,519.4,7.66
+Home,Pepperwood,895.2,14.72
+Home,Maple Grove,832.0,14.83
+Home,Hiouchi,920.2,15.18
+Home,Eureka,859.9,14.14
+Home,Brookings,944.2,15.72
+Home,Gold Beach,933.4,16.07
+Home,Port Orford,953.0,16.47
+Home,Coos Bay,918.2,16.35
+Home,Reedsport,891.0,15.58
+Home,Steamboat,823.3,14.46
+Home,Forks,1002.3,16.8
+Home,Bogachiel,1003.0,16.85
+Home,Hoh,988.6,16.52
+Home,Queets,968.9,16.09
+Home,Eagle,617.4,9.59
+Pyramid,Home,519.4,7.64
+Pyramid,Pyramid,0,0
+Pyramid,Pepperwood,414.3,8.01
+Pyramid,Maple Grove,344.9,8.04
+Pyramid,Hiouchi,433.1,8.39
+Pyramid,Eureka,372.8,7.35
+Pyramid,Brookings,457.0,8.93
+Pyramid,Gold Beach,446.3,9.28
+Pyramid,Port Orford,465.8,9.68
+Pyramid,Coos Bay,496.8,9.67
+Pyramid,Reedsport,499.8,9.43
+Pyramid,Steamboat,410.0,8.56
+Pyramid,Forks,855.5,16.19
+Pyramid,Bogachiel,856.3,16.25
+Pyramid,Hoh,841.8,15.92
+Pyramid,Queets,822.1,15.49
+Pyramid,Eagle,130.3,2.8
+Pepperwood,Home,895.8,14.73
+Pepperwood,Pyramid,415.3,8.05
+Pepperwood,Pepperwood,0,0
+Pepperwood,Maple Grove,40.3,1.35
+Pepperwood,Hiouchi,133.0,2.72
+Pepperwood,Eureka,39.5,0.75
+Pepperwood,Brookings,148.9,3.09
+Pepperwood,Gold Beach,177.0,3.7
+Pepperwood,Port Orford,205.1,4.32
+Pepperwood,Coos Bay,256.1,5.68
+Pepperwood,Reedsport,283.1,6.42
+Pepperwood,Steamboat,319.1,7.03
+Pepperwood,Forks,701.3,14.05
+Pepperwood,Bogachiel,702.0,14.11
+Pepperwood,Hoh,687.6,13.77
+Pepperwood,Queets,667.9,13.34
+Pepperwood,Eagle,309.4,6.36
+Maple Grove,Home,836.2,14.85
+Maple Grove,Pyramid,349.1,8.06
+Maple Grove,Pepperwood,40.6,1.36
+Maple Grove,Maple Grove,0,0
+Maple Grove,Hiouchi,137.4,3.44
+Maple Grove,Eureka,43.9,1.47
+Maple Grove,Brookings,153.4,3.81
+Maple Grove,Gold Beach,181.4,4.41
+Maple Grove,Port Orford,209.5,5.04
+Maple Grove,Coos Bay,260.5,6.4
+Maple Grove,Reedsport,287.5,7.14
+Maple Grove,Steamboat,323.5,7.75
+Maple Grove,Forks,705.7,14.77
+Maple Grove,Bogachiel,706.4,14.82
+Maple Grove,Hoh,692.0,14.49
+Maple Grove,Queets,672.3,14.06
+Maple Grove,Eagle,245.8,6.29
+Hiouchi,Home,920.7,15.19
+Hiouchi,Pyramid,433.6,8.4
+Hiouchi,Pepperwood,133.1,2.71
+Hiouchi,Maple Grove,137.6,3.44
+Hiouchi,Hiouchi,0,0
+Hiouchi,Eureka,93.7,1.96
+Hiouchi,Brookings,24.3,0.56
+Hiouchi,Gold Beach,52.4,1.17
+Hiouchi,Port Orford,80.4,1.79
+Hiouchi,Coos Bay,131.4,3.16
+Hiouchi,Reedsport,158.4,3.9
+Hiouchi,Steamboat,186.4,4.34
+Hiouchi,Forks,568.5,11.36
+Hiouchi,Bogachiel,569.3,11.41
+Hiouchi,Hoh,554.8,11.08
+Hiouchi,Queets,535.1,10.65
+Hiouchi,Eagle,330.3,6.62
+Eureka,Home,860.3,14.17
+Eureka,Pyramid,373.3,7.39
+Eureka,Pepperwood,39.4,0.76
+Eureka,Maple Grove,43.9,1.48
+Eureka,Hiouchi,93.6,1.97
+Eureka,Eureka,0,0
+Eureka,Brookings,109.5,2.34
+Eureka,Gold Beach,137.6,2.95
+Eureka,Port Orford,165.6,3.57
+Eureka,Coos Bay,216.7,4.93
+Eureka,Reedsport,243.7,5.67
+Eureka,Steamboat,279.7,6.28
+Eureka,Forks,661.8,13.3
+Eureka,Bogachiel,662.6,13.36
+Eureka,Hoh,648.1,13.03
+Eureka,Queets,628.4,12.6
+Eureka,Eagle,270.0,5.61
+Brookings,Home,944.6,15.72
+Brookings,Pyramid,457.6,8.94
+Brookings,Pepperwood,149.0,3.08
+Brookings,Maple Grove,153.4,3.8
+Brookings,Hiouchi,24.3,0.56
+Brookings,Eureka,109.6,2.33
+Brookings,Brookings,0,0
+Brookings,Gold Beach,28.1,0.61
+Brookings,Port Orford,56.2,1.23
+Brookings,Coos Bay,107.2,2.6
+Brookings,Reedsport,134.2,3.34
+Brookings,Steamboat,210.3,4.87
+Brookings,Forks,592.5,11.89
+Brookings,Bogachiel,593.3,11.95
+Brookings,Hoh,578.8,11.61
+Brookings,Queets,559.1,11.19
+Brookings,Eagle,354.3,7.16
+Gold Beach,Home,933.5,16.07
+Gold Beach,Pyramid,446.4,9.28
+Gold Beach,Pepperwood,177.0,3.69
+Gold Beach,Maple Grove,181.5,4.41
+Gold Beach,Hiouchi,52.3,1.17
+Gold Beach,Eureka,137.6,2.93
+Gold Beach,Brookings,28.1,0.61
+Gold Beach,Gold Beach,0,0
+Gold Beach,Port Orford,28.1,0.62
+Gold Beach,Coos Bay,79.1,1.99
+Gold Beach,Reedsport,106.1,2.73
+Gold Beach,Steamboat,184.2,4.77
+Gold Beach,Forks,567.2,11.79
+Gold Beach,Bogachiel,567.9,11.85
+Gold Beach,Hoh,553.5,11.52
+Gold Beach,Queets,533.8,11.09
+Gold Beach,Eagle,343.1,7.51
+Port Orford,Home,953.1,16.47
+Port Orford,Pyramid,466.0,9.68
+Port Orford,Pepperwood,205.0,4.31
+Port Orford,Maple Grove,209.5,5.03
+Port Orford,Hiouchi,80.3,1.79
+Port Orford,Eureka,165.7,3.55
+Port Orford,Brookings,56.1,1.23
+Port Orford,Gold Beach,28.1,0.62
+Port Orford,Port Orford,0,0
+Port Orford,Coos Bay,51.0,1.36
+Port Orford,Reedsport,78.0,2.11
+Port Orford,Steamboat,156.1,4.15
+Port Orford,Forks,539.1,11.17
+Port Orford,Bogachiel,539.9,11.22
+Port Orford,Hoh,525.4,10.89
+Port Orford,Queets,505.7,10.46
+Port Orford,Eagle,362.7,7.91
+Coos Bay,Home,917.1,16.32
+Coos Bay,Pyramid,497.3,9.7
+Coos Bay,Pepperwood,256.0,5.67
+Coos Bay,Maple Grove,260.5,6.39
+Coos Bay,Hiouchi,131.3,3.15
+Coos Bay,Eureka,216.7,4.91
+Coos Bay,Brookings,107.1,2.59
+Coos Bay,Gold Beach,79.1,1.99
+Coos Bay,Port Orford,51.0,1.36
+Coos Bay,Coos Bay,0,0
+Coos Bay,Reedsport,27.5,0.78
+Coos Bay,Steamboat,128.7,3.54
+Coos Bay,Forks,473.4,9.85
+Coos Bay,Bogachiel,474.1,9.91
+Coos Bay,Hoh,459.7,9.58
+Coos Bay,Queets,440.0,9.15
+Coos Bay,Eagle,394.0,7.92
+Reedsport,Home,889.7,15.55
+Reedsport,Pyramid,500.2,9.45
+Reedsport,Pepperwood,283.0,6.42
+Reedsport,Maple Grove,287.5,7.14
+Reedsport,Hiouchi,158.3,3.9
+Reedsport,Eureka,243.6,5.66
+Reedsport,Brookings,134.1,3.34
+Reedsport,Gold Beach,106.0,2.73
+Reedsport,Port Orford,78.0,2.11
+Reedsport,Coos Bay,27.4,0.77
+Reedsport,Reedsport,0,0
+Reedsport,Steamboat,118.2,3.06
+Reedsport,Forks,446.1,9.09
+Reedsport,Bogachiel,446.8,9.14
+Reedsport,Hoh,432.3,8.81
+Reedsport,Queets,412.6,8.38
+Reedsport,Eagle,396.8,7.68
+Steamboat,Home,822.1,14.43
+Steamboat,Pyramid,410.3,8.57
+Steamboat,Pepperwood,319.1,7.04
+Steamboat,Maple Grove,323.6,7.76
+Steamboat,Hiouchi,186.3,4.35
+Steamboat,Eureka,279.7,6.28
+Steamboat,Brookings,210.3,4.89
+Steamboat,Gold Beach,185.0,4.78
+Steamboat,Port Orford,157.0,4.15
+Steamboat,Coos Bay,129.4,3.54
+Steamboat,Reedsport,118.2,3.05
+Steamboat,Steamboat,0,0
+Steamboat,Forks,473.9,9.81
+Steamboat,Bogachiel,474.6,9.87
+Steamboat,Hoh,460.1,9.53
+Steamboat,Queets,440.4,9.1
+Steamboat,Eagle,291.3,6.52
+Forks,Home,1002.6,16.83
+Forks,Pyramid,810.1,16.2
+Forks,Pepperwood,701.2,14.05
+Forks,Maple Grove,705.7,14.77
+Forks,Hiouchi,568.4,11.37
+Forks,Eureka,661.8,13.29
+Forks,Brookings,592.4,11.9
+Forks,Gold Beach,567.1,11.79
+Forks,Port Orford,539.1,11.16
+Forks,Coos Bay,473.2,9.84
+Forks,Reedsport,446.0,9.07
+Forks,Steamboat,474.0,9.83
+Forks,Forks,0,0
+Forks,Bogachiel,2.5,0.12
+Forks,Hoh,17.5,0.42
+Forks,Queets,34.3,0.75
+Forks,Eagle,691.1,14.16
+Bogachiel,Home,1003.4,16.88
+Bogachiel,Pyramid,810.9,16.26
+Bogachiel,Pepperwood,701.9,14.1
+Bogachiel,Maple Grove,706.4,14.83
+Bogachiel,Hiouchi,569.2,11.42
+Bogachiel,Eureka,662.6,13.35
+Bogachiel,Brookings,593.1,11.96
+Bogachiel,Gold Beach,567.9,11.84
+Bogachiel,Port Orford,539.8,11.22
+Bogachiel,Coos Bay,474.0,9.89
+Bogachiel,Reedsport,446.7,9.12
+Bogachiel,Steamboat,474.8,9.88
+Bogachiel,Forks,2.5,0.12
+Bogachiel,Bogachiel,0,0
+Bogachiel,Hoh,18.2,0.48
+Bogachiel,Queets,35.0,0.81
+Bogachiel,Eagle,691.9,14.22
+Hoh,Home,988.9,16.55
+Hoh,Pyramid,796.4,15.93
+Hoh,Pepperwood,687.5,13.77
+Hoh,Maple Grove,692.0,14.5
+Hoh,Hiouchi,554.7,11.09
+Hoh,Eureka,648.1,13.02
+Hoh,Brookings,578.7,11.62
+Hoh,Gold Beach,553.4,11.51
+Hoh,Port Orford,525.4,10.89
+Hoh,Coos Bay,459.5,9.56
+Hoh,Reedsport,432.3,8.79
+Hoh,Steamboat,460.3,9.55
+Hoh,Forks,17.5,0.42
+Hoh,Bogachiel,18.2,0.48
+Hoh,Hoh,0,0
+Hoh,Queets,20.5,0.47
+Hoh,Eagle,677.4,13.88
+Queets,Home,969.2,16.12
+Queets,Pyramid,776.7,15.5
+Queets,Pepperwood,667.8,13.34
+Queets,Maple Grove,672.3,14.07
+Queets,Hiouchi,535.0,10.66
+Queets,Eureka,628.4,12.59
+Queets,Brookings,559.0,11.2
+Queets,Gold Beach,533.7,11.08
+Queets,Port Orford,505.7,10.46
+Queets,Coos Bay,439.8,9.13
+Queets,Reedsport,412.6,8.36
+Queets,Steamboat,440.6,9.12
+Queets,Forks,34.3,0.75
+Queets,Bogachiel,35.0,0.81
+Queets,Hoh,20.5,0.47
+Queets,Queets,0,0
+Queets,Eagle,657.7,13.46
+Eagle,Home,617.7,9.6
+Eagle,Pyramid,130.7,2.82
+Eagle,Pepperwood,309.2,6.35
+Eagle,Maple Grove,241.9,6.29
+Eagle,Hiouchi,330.1,6.64
+Eagle,Eureka,269.8,5.59
+Eagle,Brookings,354.1,7.17
+Eagle,Gold Beach,343.3,7.52
+Eagle,Port Orford,362.9,7.92
+Eagle,Coos Bay,393.8,7.92
+Eagle,Reedsport,396.9,7.67
+Eagle,Steamboat,291.4,6.54
+Eagle,Forks,691.2,14.18
+Eagle,Bogachiel,692.0,14.24
+Eagle,Hoh,677.5,13.91
+Eagle,Queets,657.8,13.48
+Eagle,Eagle,0,0
