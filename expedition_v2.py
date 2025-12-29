@@ -11,10 +11,10 @@ except ImportError as e:
     def render_coastal_dashboard(): st.warning("Dashboard V2 unavailable")
 
 try:
-    from planner_v2 import render_planner
+    from planner_v3 import render_planner # Changed from planner_v2
 except ImportError as e:
-    st.error(f"Error importing planner_v2: {e}")
-    def render_planner(): st.warning("Planner V2 unavailable")
+    st.error(f"Error importing planner_v3: {e}")
+    def render_planner(): st.warning("Planner V3 unavailable")
 
 # --- NAVIGATION ---
 if "page" not in st.session_state:
