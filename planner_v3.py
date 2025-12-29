@@ -1,14 +1,15 @@
 import streamlit as st
 import pandas as pd
 import datetime
+from datetime import date, timedelta
 import requests
-from datetime import timedelta
 import re
 import math
 import asyncio
 import aiohttp
 import json
 import os
+import gzip
 
 # --- CONFIGURATION ---
 if 'reset_id' not in st.session_state:
@@ -79,7 +80,7 @@ RIVER_REGIONS = {
 NODE_COORDS = {
     "Home": {"lat": 37.472, "lon": -105.879},
     "Delta": {"lat": 39.352, "lon": -112.575},
-    "Delta, UT": {"lat": 39.352, "lon": -112.575}, # Alias for Delta, UT
+    "Delta, UT": {"lat": 39.352, "lon": -112.575}, 
     "Pyramid": {"lat": 39.95, "lon": -119.60},
     "Eagle": {"lat": 40.55, "lon": -120.80},
     "Pepperwood": {"lat": 40.48, "lon": -124.03},
@@ -277,19 +278,52 @@ def format_precip_text(txt: str) -> str:
     return "Precip: none/min"
 
 # ============================================================
-# 3. ROUTING & ITINERARY (UPDATED FOR ROUTES.JSON)
+# 3. ROUTING & ITINERARY (UPDATED FOR COMPRESSED JSON & INJECTION)
 # ============================================================
 
 @st.cache_data
 def load_routes():
-    """Load pre-calculated routes with geometry from JSON."""
-    try:
-        with open('routes.json', 'r') as f:
-            data = json.load(f)
-        return data
-    except FileNotFoundError:
-        st.warning("routes.json not found. Routing may fall back to simple calculations.")
-        return {}
+    """Load pre-calculated routes with geometry from JSON or GZIP JSON.
+       Also INJECTS missing routes manually if they don't exist.
+    """
+    data = {}
+    
+    # 1. Try Loading .json.gz (Compressed - Preferred for deploy)
+    if os.path.exists('routes.json.gz'):
+        try:
+            with gzip.open('routes.json.gz', 'rt', encoding='utf-8') as f:
+                data = json.load(f)
+        except Exception as e:
+            st.warning(f"Error loading routes.json.gz: {e}")
+
+    # 2. Try Loading .json (Uncompressed - Dev fallback)
+    elif os.path.exists('routes.json'):
+        try:
+            with open('routes.json', 'r') as f:
+                data = json.load(f)
+        except Exception as e:
+            st.warning(f"Error loading routes.json: {e}")
+    else:
+        st.warning("No route database found (routes.json or routes.json.gz).")
+
+    # 3. MANUAL INJECTION of Critical Missing Routes
+    #    (Uses simple straight lines if complex geometry unavailable)
+    
+    if "Home|Delta, UT" not in data:
+        data["Home|Delta, UT"] = {
+            "miles": 524.8,  
+            "hours": 9.72,
+            "geometry": [[-105.879, 37.472], [-112.575, 39.352]] 
+        }
+    
+    if "Pyramid|Delta, UT" not in data:
+        data["Pyramid|Delta, UT"] = {
+            "miles": 474.8, 
+            "hours": 8.61, 
+            "geometry": [[-119.60, 39.95], [-112.575, 39.352]]
+        }
+
+    return data
 
 ROUTES_DB = load_routes()
 
@@ -314,13 +348,10 @@ def get_routing_info(loc1, loc2):
         if key in ROUTES_DB:
             r = ROUTES_DB[key]
             geo = r.get('geometry', [])
-            # If the key was a "reverse" key, we should ideally reverse geometry, 
-            # but for simple visualization, direction often doesn't break the render significantly
             return r['miles'], r['hours'], geo
 
     # Fallback to Haversine if route missing in JSON
-    if loc1 in NODE_COORDS and loc2 in NODE_COORDS: # Check against normalized names or try aliases
-        # Handle "Delta" vs "Delta, UT" for fallback coords
+    if loc1 in NODE_COORDS and loc2 in NODE_COORDS:
         c1 = NODE_COORDS.get(loc1) or NODE_COORDS.get(f"{loc1}, UT")
         c2 = NODE_COORDS.get(loc2) or NODE_COORDS.get(f"{loc2}, UT")
         
@@ -339,7 +370,7 @@ def get_return_days_needed(loc):
     
     # Updated threshold: 27 hours allows covering more ground
     if h <= 12: return 1
-    if h <= 27: return 2  # Changed from 24 to 27
+    if h <= 27: return 2
     return 3
 
 def generate_itinerary(start_date, trip_days, ratings, vetoes, mpg, gas_adj_total, start_location="Home"):
@@ -347,7 +378,7 @@ def generate_itinerary(start_date, trip_days, ratings, vetoes, mpg, gas_adj_tota
     curr_date = start_date
     curr_loc = start_location
     days_used = 0
-    map_segments = [] # New: Store geometry for map
+    map_segments = [] # Store geometry for map
     
     FAMILIAR_WATERS = [
         "Eel (Main)", "SF Eel", "Van Duzen", "Redwood Creek", 
@@ -363,16 +394,16 @@ def generate_itinerary(start_date, trip_days, ratings, vetoes, mpg, gas_adj_tota
             # --- CUSTOM: Route Home -> Delta -> Pyramid ---
             if curr_loc == "Home":
                 # Leg 1: Home -> Delta
-                m, h, geo = get_routing_info("Home", "Delta")
+                m, h, geo = get_routing_info("Home", "Delta, UT")
                 cost = (m/mpg) * (BASE_GAS_PRICES.get("Home", 3.00) + gas_adj_total)
-                rows.append([curr_date.strftime("%m/%d/%Y"), "Delta", f"DRIVE: Home → Delta (Overnight)", m, h, cost])
+                rows.append([curr_date.strftime("%m/%d/%Y"), "Delta, UT", f"DRIVE: Home → Delta (Overnight)", m, h, cost])
                 if geo: map_segments.append(geo)
-                curr_loc = "Delta"
+                curr_loc = "Delta, UT"
                 curr_date += timedelta(days=1)
                 days_used += 1
                 
                 # Leg 2: Delta -> Pyramid
-                m, h, geo = get_routing_info("Delta", "Pyramid")
+                m, h, geo = get_routing_info("Delta, UT", "Pyramid")
                 cost = (m/mpg) * (BASE_GAS_PRICES.get("Delta", 3.69) + gas_adj_total)
                 rows.append([curr_date.strftime("%m/%d/%Y"), "Pyramid", f"DRIVE: Delta → Pyramid", m, h, cost])
                 if geo: map_segments.append(geo)
@@ -519,10 +550,17 @@ def render_planner():
             loc_options = ["Home"] + sorted(list(NODE_COORDS.keys()))
             current_loc = st.selectbox("Where are you now?", loc_options, index=0)
         with st.expander("📅 Timeline", expanded=False):
-            default_start = datetime.date.today()
-            start_d = st.date_input("Start / Today", default_start, format="MM/DD/YYYY")
-            end_d = st.date_input("End (Home Arrival)", datetime.date(2026, 1, 17), format="MM/DD/YYYY")
+            # START DATE: Later of 2026/01/01 or Today
+            now = datetime.date.today()
+            season_start = datetime.date(2026, 1, 1)
+            start_default = max(now, season_start)
+            
+            start_d = st.date_input("Start Date", start_default, format="MM/DD/YYYY")
+            end_d = st.date_input("End Date", start_default + timedelta(days=17), format="MM/DD/YYYY")
+            
+            # Calculate duration from dates
             trip_len = (end_d - start_d).days + 1
+            
             st.info(f"Total Window: {trip_len} Days")
 
         user_ratings = {}
@@ -553,7 +591,13 @@ def render_planner():
 
         st.markdown("---")
         st.markdown("### 🔗 Quick Links")
-        st.markdown("* [NOAA River Forecast](https://www.cnrfc.noaa.gov/)")
+        st.markdown("""
+        * [NOAA River Forecast](https://www.cnrfc.noaa.gov/)
+        * [Pyramid Fly Co](https://pyramidflyco.com/fishing-report/)
+        * [The Fly Shop](https://www.theflyshop.com/stream-report)
+        * [Ashland Fly Shop](https://www.ashlandflyshop.com/blogs/fishing-reports)
+        * [Waters West](https://waterswest.com/fishing-report/)
+        """)
 
     # ============================================================
     # 5. MAIN CONTENT
