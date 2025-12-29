@@ -294,7 +294,7 @@ def load_routes():
             with gzip.open('routes.json.gz', 'rt', encoding='utf-8') as f:
                 data = json.load(f)
         except Exception as e:
-            st.warning(f"Error loading routes.json.gz: {e}")
+            st.error(f"Error loading routes.json.gz: {e}")
 
     # 2. Try Loading .json (Uncompressed - Dev fallback)
     elif os.path.exists('routes.json'):
@@ -302,9 +302,9 @@ def load_routes():
             with open('routes.json', 'r') as f:
                 data = json.load(f)
         except Exception as e:
-            st.warning(f"Error loading routes.json: {e}")
+            st.error(f"Error loading routes.json: {e}")
     else:
-        st.warning("No route database found (routes.json or routes.json.gz).")
+        st.warning("No route database found (routes.json or routes.json.gz). Using straight-line estimates.")
 
     # 3. MANUAL INJECTION of Critical Missing Routes
     #    (Uses simple straight lines if complex geometry unavailable)
@@ -556,7 +556,8 @@ def render_planner():
             start_default = max(now, season_start)
             
             start_d = st.date_input("Start Date", start_default, format="MM/DD/YYYY")
-            end_d = st.date_input("End Date", start_default + timedelta(days=17), format="MM/DD/YYYY")
+            # Default trip length is now 16 days
+            end_d = st.date_input("End Date", start_default + timedelta(days=16), format="MM/DD/YYYY")
             
             # Calculate duration from dates
             trip_len = (end_d - start_d).days + 1
@@ -728,10 +729,10 @@ def render_planner():
         pickable=False
     )
     
-    # Simplify tooltip HTML for points
+    # Restored detailed tooltip for river points
     tooltip_html = """
         <div style="font-family: sans-serif; padding: 5px; background: rgba(0,0,0,0.8); color: white; border-radius: 4px;">
-            <b>{name}</b><br>Type: {type}
+            <b>{name}</b><br>Type: {type}<br>Score: {score}<br>{info}
         </div>
     """
 
@@ -741,6 +742,8 @@ def render_planner():
         get_position=["lon", "lat"], 
         get_color="color", 
         get_radius="radius",
+        radius_min_pixels=3, # Min pixel size when zoomed out
+        radius_max_pixels=15, # Max pixel size when zoomed in
         pickable=True,
         auto_highlight=True
     )
